@@ -255,14 +255,14 @@ body.loaded .corner-logo:hover {
   /* Fixed top bar that covers the white status-bar area */
   .mobile-nav {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 20;
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: 1.125rem;
+    padding-top: calc(env(safe-area-inset-top) + 0.875rem);
+    padding-bottom: 0.875rem;
     padding-left: calc(1.5rem + env(safe-area-inset-left));
     padding-right: calc(1.5rem + env(safe-area-inset-right));
     background: #ffffff;
@@ -280,8 +280,9 @@ body.loaded .corner-logo:hover {
     border-radius: 50%;
   }
 
-  /* Extra bottom padding so the background image extends behind Safari's search bar */
+  /* Push top padding down to clear the navbar; match bottom so content centers */
   .page {
+    padding-top: calc(8rem + env(safe-area-inset-top));
     padding-bottom: calc(10rem + env(safe-area-inset-bottom));
   }
 }
