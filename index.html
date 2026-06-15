@@ -153,5 +153,20 @@
         </nav>
       </div>
     </main>
+    <script>
+      (function () {
+        var done = false;
+        function reveal() {
+          if (done) return;
+          done = true;
+          document.body.classList.add('loaded');
+        }
+        var fallback = setTimeout(reveal, 5000);
+        var img = new Image();
+        img.onload = function () { clearTimeout(fallback); reveal(); };
+        img.onerror = reveal;
+        img.src = 'assets/landing_background.png';
+      })();
+    </script>
   </body>
 </html>
