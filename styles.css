@@ -47,14 +47,14 @@ body {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--text-muted);
-  background-color: var(--espresso);
+  background-color: #ffffff;
 }
 
 .bg {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-color: #2a2119;
+  background-color: #ffffff;
   background-image: url("assets/landing_background.png");
   background-position: center;
   background-size: cover;
