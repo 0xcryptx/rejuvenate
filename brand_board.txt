@@ -1,0 +1,55 @@
+REJUVENATE — BRAND BOARD REFERENCE
+=====================================
+
+BRAND NAME
+----------
+REJUVENATE
+
+
+COLOR PALETTE
+-------------
+#E3D7C9 — warm cream / light beige
+#AD9D8E — taupe beige
+#BE955A — muted gold / caramel
+#858779 — soft muted sage gray
+#252420 — deep charcoal brown
+#3A1B14 — dark espresso brown
+#430F11 — deep burgundy / wine red
+
+
+FONTS
+-----
+Primary display / luxury serif font:
+  Kelvinch
+
+Secondary / body font:
+  Montserrat
+
+Font usage:
+  Use Kelvinch for headings, hero titles, and elegant section titles.
+  Use Montserrat for body text, navigation, buttons, forms, captions, and smaller UI text.
+
+
+FONT FALLBACK STACKS
+--------------------
+For Kelvinch:
+  font-family: "Kelvinch", "Cormorant Garamond", "Playfair Display", Georgia, serif;
+
+For Montserrat:
+  font-family: "Montserrat", Arial, sans-serif;
+
+
+DESIGN STYLE
+------------
+Style:        Luxury beauty / skincare / medical aesthetics
+Mood:         Warm, elegant, soft, premium, calm, feminine, spa-like
+UI details:   Rounded corners, soft shadows, beige cards, dark brown backgrounds,
+              muted gold accents, lots of clean spacing
+Avoid:        Harsh white, neon colours, clinical blue, medical styling
+
+Visual references:
+  - Soft beige treatment room aesthetic
+  - Glowy skin photography
+  - Warm spa lighting
+  - Minimal reception / interior design
+  - Natural luxury tones
