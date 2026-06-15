@@ -54,7 +54,11 @@ body {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: url("assets/landing_background.png") center / cover no-repeat;
+  background-color: #2a2119;
+  background-image: url("assets/landing_background.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   filter: blur(12px);
   transform: scale(1.03);
 }
