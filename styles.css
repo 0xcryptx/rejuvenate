@@ -82,7 +82,7 @@ body.loaded .bg {
   align-items: center;
   justify-content: center;
   min-height: 100dvh;
-  padding: 2.5rem 1.5rem;
+  padding: calc(2.5rem + env(safe-area-inset-top)) calc(1.5rem + env(safe-area-inset-right)) calc(2.5rem + env(safe-area-inset-bottom)) calc(1.5rem + env(safe-area-inset-left));
 }
 
 .content {
@@ -101,8 +101,8 @@ body.loaded .content {
 
 .corner-logo {
   position: fixed;
-  top: 1.25rem;
-  left: 1.5rem;
+  top: calc(1.25rem + env(safe-area-inset-top));
+  left: calc(1.5rem + env(safe-area-inset-left));
   z-index: 10;
   display: block;
   line-height: 0;
