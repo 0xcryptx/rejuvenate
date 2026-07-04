@@ -277,6 +277,8 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   transition: width 0.3s var(--ease);
 }
 .nav a:not(.btn):hover::after { width: 100%; }
+/* Compact size for the nav Book Now button */
+.nav .btn { padding: 0.6rem 1.5rem; font-size: 0.68rem; }
 /* Book Now (.btn--dark) keeps its own cream text when the header is solid;
    only the transparent-over-hero state flips it to a light pill. */
 .site-header:not(.is-scrolled) .nav .btn--dark { background: var(--cream); color: var(--espresso); }
