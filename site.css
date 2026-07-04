@@ -223,7 +223,7 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.1rem var(--gutter);
+  padding: 0.85rem clamp(1.1rem, 3vw, 2rem);
   background: rgba(245, 240, 232, 0);
   transition: background-color 0.4s var(--ease), box-shadow 0.4s var(--ease),
               padding 0.4s var(--ease);
@@ -241,7 +241,7 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   flex-shrink: 0;
 }
 .brand img {
-  height: 1.5rem;
+  height: 1.7rem;   /* R monogram — compact */
   width: auto;
 }
 /* On the transparent (top) header over the dark hero, lighten the dark
@@ -347,7 +347,7 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   min-height: 92vh;
   display: flex;
   align-items: center;
-  padding-block: 8rem 4rem;
+  padding-block: 7rem 6.5rem;   /* bottom clears the value strip */
   color: var(--cream);
   isolation: isolate;
   overflow: hidden;
@@ -379,6 +379,13 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
 .hero .display { color: var(--cream); }        /* over dark hero */
 .hero .btn--ghost { color: var(--cream); }
 .hero .eyebrow { margin-bottom: 1.5rem; }
+.hero__logo {                                   /* Rejuvenate wordmark, lightened to cream */
+  width: clamp(11rem, 26vw, 15rem);
+  height: auto;
+  margin-bottom: 1.85rem;
+  filter: brightness(0) invert(1) sepia(0.22) saturate(1.3) hue-rotate(-6deg);
+  opacity: 0.95;
+}
 .hero h1 {
   margin-bottom: 1.75rem;
 }
@@ -400,18 +407,20 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
 /* ============================================================
    Intro / marquee-ish values strip
    ============================================================ */
-.strip {
-  background: var(--espresso);
+.strip {                          /* overlays the bottom of the hero image */
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 1;
+  background: transparent;
   color: var(--cream);
-  border-top: 1px solid rgba(190,149,90,0.25);
-  border-bottom: 1px solid rgba(190,149,90,0.25);
+  border-top: 1px solid rgba(190,149,90,0.4);   /* gold divider line */
 }
 .strip .wrap {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: clamp(1rem, 4vw, 3.5rem);
-  padding-block: 1.4rem;
+  padding-block: 1.25rem;
   text-align: center;
 }
 .strip span {
@@ -703,17 +712,17 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
 .site-footer {
   background: var(--charcoal);
   color: var(--taupe);
-  padding-block: clamp(3rem, 6vw, 4.5rem) 2rem;
+  padding-block: clamp(2rem, 4vw, 2.75rem) 1.25rem;
 }
 .footer__top {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr;
-  gap: clamp(2rem, 5vw, 3.5rem);
-  padding-bottom: 3rem;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding-bottom: 1.75rem;
   border-bottom: 1px solid rgba(190,149,90,0.18);
 }
-.footer__brand img { height: 1.5rem; width: auto; filter: brightness(0) invert(1) sepia(0.3) saturate(1.3) hue-rotate(-6deg); opacity: 0.9; margin-bottom: 1.25rem; }
-.footer__brand p { font-size: 0.9rem; max-width: 30ch; }
+.footer__brand img { height: 1.4rem; width: auto; filter: brightness(0) invert(1) sepia(0.3) saturate(1.3) hue-rotate(-6deg); opacity: 0.9; margin-bottom: 0.85rem; }
+.footer__brand p { font-size: 0.88rem; max-width: 30ch; }
 .footer__col h4 {
   font-family: var(--font-body);
   font-size: 0.68rem;
@@ -721,9 +730,9 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.85rem;
 }
-.footer__col ul { list-style: none; display: grid; gap: 0.7rem; }
+.footer__col ul { list-style: none; display: grid; gap: 0.55rem; }
 .footer__col a { text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
 .footer__col a:hover { color: var(--cream); }
 .footer__bottom {
@@ -732,7 +741,7 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   gap: 0.75rem 1.5rem;
   justify-content: space-between;
   align-items: center;
-  padding-top: 2rem;
+  padding-top: 1.25rem;
   font-size: 0.75rem;
   letter-spacing: 0.05em;
   color: var(--sage);
