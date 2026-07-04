@@ -255,7 +255,7 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   align-items: center;
   gap: clamp(1.25rem, 2.5vw, 2.5rem);
 }
-.nav a {
+.nav a:not(.btn) {
   font-family: var(--font-body);
   font-size: 0.72rem;
   font-weight: 500;
@@ -267,7 +267,7 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   padding-block: 0.25rem;
   transition: color 0.25s var(--ease);
 }
-.site-header:not(.is-scrolled) .nav a { color: var(--cream); }
+.site-header:not(.is-scrolled) .nav a:not(.btn) { color: var(--cream); }
 .nav a:not(.btn)::after {
   content: "";
   position: absolute;
@@ -277,7 +277,8 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   transition: width 0.3s var(--ease);
 }
 .nav a:not(.btn):hover::after { width: 100%; }
-.nav a.btn { color: #2c1a0d; }
+/* Book Now (.btn--dark) keeps its own cream text when the header is solid;
+   only the transparent-over-hero state flips it to a light pill. */
 .site-header:not(.is-scrolled) .nav .btn--dark { background: var(--cream); color: var(--espresso); }
 .nav a.is-active:not(.btn) { color: var(--gold); }
 .nav a.is-active:not(.btn)::after { width: 100%; }
@@ -320,11 +321,12 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
     transform: translateX(100%);
     transition: transform 0.4s var(--ease);
   }
-  .nav a,
-  .site-header:not(.is-scrolled) .nav a { color: var(--cream); font-size: 0.9rem; }
+  .nav a:not(.btn),
+  .site-header:not(.is-scrolled) .nav a:not(.btn) { color: var(--cream); font-size: 0.9rem; }
   .nav a:not(.btn)::after { display: none; }
   .nav .btn { width: 100%; }
-  .site-header:not(.is-scrolled) .nav .btn--dark { background: var(--gold); color: #2c1a0d; }
+  /* In the espresso drawer, keep Book Now a gold pill in either header state */
+  .nav .btn--dark { background: var(--gold); color: #2c1a0d; }
   body.nav-open .nav { transform: translateX(0); }
   body.nav-open { overflow: hidden; }
   /* hamburger -> X */
@@ -392,18 +394,6 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   flex-wrap: wrap;
   gap: 0.9rem;
 }
-.hero__scroll {
-  position: absolute;
-  left: 50%; bottom: 1.75rem;
-  transform: translateX(-50%);
-  font-size: 0.6rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: rgba(227,215,201,0.6);
-  writing-mode: vertical-rl;
-  z-index: 1;
-}
-
 /* ============================================================
    Intro / marquee-ish values strip
    ============================================================ */
