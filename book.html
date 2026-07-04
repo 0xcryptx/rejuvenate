@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Book your appointment at Rejuvenate — ladies beauty and aesthetics salon in Dubai Sports City. Choose your treatment and time online."
+    />
+    <title>Book an Appointment | Rejuvenate — Dubai Sports City</title>
+    <meta name="theme-color" content="#3A1B14" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rejuvenate.buildyourweb.ae/book.html" />
+    <meta property="og:title" content="Book an Appointment | Rejuvenate" />
+    <meta property="og:description" content="Choose your treatment and time online at Rejuvenate, Dubai Sports City." />
+    <meta property="og:image" content="https://rejuvenate.buildyourweb.ae/assets/og-image.jpg" />
+    <meta property="og:site_name" content="Rejuvenate" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="site.css" />
+  </head>
+  <body>
+    <!-- ============================ HEADER ============================ -->
+    <header class="site-header is-scrolled" id="top">
+      <a href="index.html" class="brand" aria-label="Rejuvenate home">
+        <img src="assets/logo/rejuvenate_logo_transparent.png" alt="Rejuvenate" />
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#experience">Why Rejuvenate</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="book.html" class="btn btn--dark" aria-current="page">Book Now</a>
+      </nav>
+
+      <button class="nav-toggle" aria-label="Open menu" aria-controls="nav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <main>
+      <!-- ========================= PAGE HERO ========================= -->
+      <section class="page-hero" aria-label="Book an appointment">
+        <div class="wrap">
+          <p class="eyebrow">Reservations · Dubai Sports City</p>
+          <h1 class="display">Book your appointment</h1>
+          <p>
+            Select your treatment and a time that suits you. Your moment to
+            rejuvenate is only a few taps away — we look forward to welcoming you.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===================== BOOKING WIDGET ======================== -->
+      <section class="section section--tight" aria-label="Online booking">
+        <div class="booking-wrap">
+          <div class="booking-card">
+
+            <!-- BookApp reservation widget — integrated exactly as provided -->
+            <div id="bookapp-reservation-widget">
+              <p class="booking-fallback">
+                Loading the booking calendar… If it doesn’t appear, please
+                <a href="https://wa.me/9710000000000">message us on WhatsApp</a>
+                or <a href="index.html#contact">contact us</a> and we’ll book you in.
+              </p>
+            </div>
+            <script type="text/javascript">
+            !function(e,t,n){var u=n.queue||[];e.BookAppWidgetReady=n=function(e){n.queue.push(e)},n.queue=u;var o="script",a=t.createElement(o),i=t.getEsByTagName(o)[0];a.src="https://cdn.book.app/embed/v1.js",a.type="text/javascript",a.async=!0,a.addEventListener("load",function(){for(;n.queue.length;)n.queue.shift()()},!1),i.parentNode.insertBefore(a,i)}(window,document,window.BookAppWidgetReady||function(){});
+            BookAppWidgetReady(function () {
+                BookApp.widget('#bookapp-reservation-widget', 'rejuvenate-dubai-ladies-salon' );
+            });
+            </script>
+            <!-- /BookApp reservation widget -->
+
+          </div>
+
+          <p class="booking-help">
+            Prefer a personal touch? Call or
+            <a href="https://wa.me/9710000000000">WhatsApp us</a>
+            and our team will arrange everything for you.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================ FOOTER ========================== -->
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer__top">
+          <div class="footer__brand">
+            <img src="assets/logo/rejuvenate_logo_transparent.png" alt="Rejuvenate" />
+            <p>A warm, private ladies beauty &amp; aesthetics salon in Dubai Sports City.</p>
+          </div>
+          <div class="footer__col">
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="index.html#about">About</a></li>
+              <li><a href="index.html#services">Services</a></li>
+              <li><a href="index.html#experience">Why Rejuvenate</a></li>
+              <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="https://www.instagram.com/rejuvenate_dxb/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li><a href="https://wa.me/9710000000000" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+              <li><a href="mailto:hello@rejuvenate.ae">Email us</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <span>© <span id="year">2026</span> Rejuvenate · Dubai Sports City</span>
+          <span>Ladies Salon &amp; Aesthetics</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="site.js" defer></script>
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  </body>
+</html>
