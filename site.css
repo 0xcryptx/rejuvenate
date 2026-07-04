@@ -764,6 +764,148 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
 }
 
 /* ============================================================
+   HOME — editorial components (distinct from interior pages)
+   ============================================================ */
+
+/* Brand statement / manifesto */
+.manifesto { text-align: center; background: var(--sand); }
+.manifesto .wrap { max-width: 54rem; }
+.manifesto .eyebrow { margin-bottom: 2rem; }
+.manifesto .statement {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.7rem, 3.8vw, 3rem);
+  line-height: 1.32;
+  color: var(--ink);
+  letter-spacing: 0.005em;
+}
+.manifesto .statement em { color: var(--gold); font-style: italic; }
+.manifesto .monogram {
+  width: 2.5rem;
+  height: auto;
+  margin: 2.5rem auto 0;
+  opacity: 0.75;
+}
+.manifesto .more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2.25rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  text-decoration: none;
+}
+.manifesto .more span { transition: transform 0.3s var(--ease); }
+.manifesto .more:hover span { transform: translateX(5px); }
+
+/* Curated treatment index (hairline list, not cards) */
+.index-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem 2rem;
+  flex-wrap: wrap;
+  margin-bottom: clamp(1.5rem, 4vw, 2.75rem);
+}
+.index-head .eyebrow { margin-bottom: 0.9rem; }
+.index-head h2 { margin: 0; }
+.index-head .index-viewall {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  text-decoration: none;
+  white-space: nowrap;
+  padding-bottom: 0.35rem;
+}
+.index-head .index-viewall:hover { color: var(--gold); }
+
+.index-list { border-top: 1px solid var(--line); }
+.index-row {
+  display: grid;
+  grid-template-columns: auto 1fr 1.1fr auto;
+  align-items: baseline;
+  gap: clamp(0.85rem, 3vw, 2.5rem);
+  padding: clamp(1.3rem, 3vw, 2.1rem) 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+  transition: padding-left 0.35s var(--ease), background-color 0.35s var(--ease);
+}
+.index-row:hover { padding-left: 0.75rem; }
+.index-row .ix {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  color: var(--gold);
+}
+.index-row .name {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  line-height: 1.1;
+  color: var(--ink);
+}
+.index-row .desc {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--sage);
+}
+.index-row .arrow {
+  color: var(--gold);
+  align-self: center;
+  transition: transform 0.3s var(--ease);
+}
+.index-row .arrow svg { width: 1.4rem; height: 1.4rem; display: block; }
+.index-row:hover .arrow { transform: translateX(6px); }
+.index-row:hover .name { color: var(--burgundy); }
+@media (max-width: 720px) {
+  .index-row { grid-template-columns: auto 1fr auto; }
+  .index-row .desc { display: none; }
+}
+
+/* Mood band — atmospheric image moment carrying the booking invite */
+.mood {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  text-align: center;
+  color: var(--cream);
+  padding-block: clamp(6rem, 15vw, 11rem);
+}
+.mood::before {
+  content: "";
+  position: absolute; inset: 0; z-index: -2;
+  background-image: url("/assets/landing_background2.jpg");
+  background-size: cover;
+  background-position: center 35%;
+  background-color: var(--espresso);
+  background-blend-mode: multiply;
+  filter: saturate(0.68) brightness(0.85) sepia(0.3);
+  transform: scale(1.04);
+}
+.mood::after {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    radial-gradient(120% 130% at 50% 50%, rgba(58,27,20,0.55), rgba(37,36,32,0.82));
+}
+.mood .eyebrow { color: var(--gold); }
+.mood .line {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.9rem, 5vw, 3.4rem);
+  line-height: 1.25;
+  color: var(--cream);
+  max-width: 20ch;
+  margin: 1.5rem auto 2.5rem;
+}
+
+/* ============================================================
    Booking page
    ============================================================ */
 .page-hero {
