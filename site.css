@@ -279,6 +279,9 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
 .nav a:not(.btn):hover::after { width: 100%; }
 .nav a.btn { color: #2c1a0d; }
 .site-header:not(.is-scrolled) .nav .btn--dark { background: var(--cream); color: var(--espresso); }
+.nav a.is-active:not(.btn) { color: var(--gold); }
+.nav a.is-active:not(.btn)::after { width: 100%; }
+.site-header:not(.is-scrolled) .nav a.is-active:not(.btn) { color: var(--gold); }
 
 /* Mobile menu button */
 .nav-toggle {
