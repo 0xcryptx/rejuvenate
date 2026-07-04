@@ -67,21 +67,37 @@
         <div class="booking-wrap">
           <div class="booking-card">
 
+            <!-- Fallback shown only until the widget mounts (hidden by the observer below) -->
+            <p class="booking-fallback" id="booking-fallback">
+              Loading the booking calendar… If it doesn’t appear, please
+              <a href="https://wa.me/9710000000000">message us on WhatsApp</a>
+              or <a href="index.html#contact">contact us</a> and we’ll book you in.
+            </p>
+
             <!-- BookApp reservation widget — integrated exactly as provided -->
-            <div id="bookapp-reservation-widget">
-              <p class="booking-fallback">
-                Loading the booking calendar… If it doesn’t appear, please
-                <a href="https://wa.me/9710000000000">message us on WhatsApp</a>
-                or <a href="index.html#contact">contact us</a> and we’ll book you in.
-              </p>
-            </div>
+            <div id="bookapp-reservation-widget"></div>
             <script type="text/javascript">
-            !function(e,t,n){var u=n.queue||[];e.BookAppWidgetReady=n=function(e){n.queue.push(e)},n.queue=u;var o="script",a=t.createElement(o),i=t.getEsByTagName(o)[0];a.src="https://cdn.book.app/embed/v1.js",a.type="text/javascript",a.async=!0,a.addEventListener("load",function(){for(;n.queue.length;)n.queue.shift()()},!1),i.parentNode.insertBefore(a,i)}(window,document,window.BookAppWidgetReady||function(){});
+            !function(e,t,n){var u=n.queue||[];e.BookAppWidgetReady=n=function(e){n.queue.push(e)},n.queue=u;var o="script",a=t.createElement(o),i=t.getElementsByTagName(o)[0];a.src="https://cdn.book.app/embed/v1.js",a.type="text/javascript",a.async=!0,a.addEventListener("load",function(){for(;n.queue.length;)n.queue.shift()()},!1),i.parentNode.insertBefore(a,i)}(window,document,window.BookAppWidgetReady||function(){});
             BookAppWidgetReady(function () {
                 BookApp.widget('#bookapp-reservation-widget', 'rejuvenate-dubai-ladies-salon' );
             });
             </script>
             <!-- /BookApp reservation widget -->
+
+            <!-- Hide the fallback once the widget injects its content (does not touch the widget script) -->
+            <script>
+            (function () {
+              var mount = document.getElementById("bookapp-reservation-widget");
+              var fallback = document.getElementById("booking-fallback");
+              if (!mount || !fallback) return;
+              function hide() { fallback.style.display = "none"; }
+              if (mount.children.length) return hide();
+              var obs = new MutationObserver(function () {
+                if (mount.children.length) { hide(); obs.disconnect(); }
+              });
+              obs.observe(mount, { childList: true });
+            })();
+            </script>
 
           </div>
 
