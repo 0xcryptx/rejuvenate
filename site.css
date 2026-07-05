@@ -1083,6 +1083,7 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
 .booking-wrap {
   max-width: 60rem;
   margin: clamp(-3rem, -5vw, -4rem) auto 0;
+  padding-inline: var(--gutter);
   position: relative;
   z-index: 2;
 }
