@@ -635,12 +635,17 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   position: relative;
   text-align: center;
   background:
-    radial-gradient(120% 140% at 50% -20%, rgba(190,149,90,0.22), transparent 60%),
-    var(--charcoal);
-  color: var(--cream);
+    radial-gradient(130% 150% at 50% 130%, rgba(190,149,90,0.32), transparent 62%),
+    var(--sand-deep);
+  color: var(--ink-soft);
+  border-top: 1px solid var(--line);
 }
+.cta-band .display { color: var(--ink); }        /* visible dark heading on the light band */
+.cta-band .rule { color: var(--burgundy); }
 .cta-band h2 { margin-bottom: 1.25rem; }
-.cta-band p { max-width: 42ch; margin: 0 auto 2.25rem; color: var(--taupe); }
+.cta-band p { max-width: 42ch; margin: 0 auto 2.25rem; color: var(--ink-soft); }
+.cta-band .btn--primary { background: var(--espresso); color: var(--cream); }
+.cta-band .btn--primary:hover { background: var(--burgundy); }
 
 /* ============================================================
    Contact
