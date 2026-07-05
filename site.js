@@ -32,25 +32,30 @@
   window.addEventListener("resize", onScroll, { passive: true });
   onScroll();
 
-  /* Mobile menu */
+  /* Mobile menu (full-width dropdown) */
   if (toggle) {
-    toggle.addEventListener("click", function () {
+    function closeNav() {
+      body.classList.remove("nav-open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+    toggle.addEventListener("click", function (e) {
+      e.stopPropagation();
       var open = body.classList.toggle("nav-open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
-    /* Close the menu after tapping a link */
+    /* Close after tapping a link */
     document.querySelectorAll(".nav a").forEach(function (a) {
-      a.addEventListener("click", function () {
-        body.classList.remove("nav-open");
-        toggle.setAttribute("aria-expanded", "false");
-      });
+      a.addEventListener("click", closeNav);
+    });
+    /* Close when tapping anywhere outside the header */
+    document.addEventListener("click", function (e) {
+      if (body.classList.contains("nav-open") && header && !header.contains(e.target)) {
+        closeNav();
+      }
     });
     /* Esc closes it */
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && body.classList.contains("nav-open")) {
-        body.classList.remove("nav-open");
-        toggle.setAttribute("aria-expanded", "false");
-      }
+      if (e.key === "Escape" && body.classList.contains("nav-open")) closeNav();
     });
   }
 

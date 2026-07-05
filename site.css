@@ -336,28 +336,40 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
 
 @media (max-width: 860px) {
   .nav-toggle { display: flex; }
+  /* Full-width dropdown that drops down from below the navbar */
   .nav {
-    position: fixed;
-    inset: 0 0 0 auto;
-    width: min(80vw, 20rem);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 1.75rem;
-    padding: 2rem 2.25rem;
+    align-items: stretch;
+    gap: 0;
+    padding: 0.25rem clamp(1.1rem, 4vw, 1.75rem) 1.25rem;
     background: var(--espresso);
     box-shadow: var(--shadow);
-    transform: translateX(100%);
-    transition: transform 0.4s var(--ease);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s var(--ease), transform 0.35s var(--ease), visibility 0.35s;
   }
   .nav a:not(.btn),
-  .site-header:not(.is-scrolled) .nav a:not(.btn) { color: var(--cream); font-size: 0.9rem; }
+  .site-header:not(.is-scrolled) .nav a:not(.btn) {
+    color: var(--cream);
+    font-size: 0.95rem;
+    width: 100%;
+    padding: 0.95rem 0.25rem;
+    border-bottom: 1px solid rgba(190, 149, 90, 0.16);
+  }
   .nav a:not(.btn)::after { display: none; }
-  .nav .btn { width: 100%; }
-  /* In the espresso drawer, keep Book Now a gold pill in either header state */
+  .nav .btn { width: 100%; margin-top: 1rem; }
+  /* In the espresso dropdown, keep Book Now a gold pill in either header state */
   .nav .btn--dark { background: var(--gold); color: #2c1a0d; }
-  body.nav-open .nav { transform: translateX(0); }
-  body.nav-open { overflow: hidden; }
+  body.nav-open .nav {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
   /* hamburger -> X */
   body.nav-open .nav-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
   body.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
