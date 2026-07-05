@@ -6,6 +6,29 @@
   var toggle = document.querySelector(".nav-toggle");
   var body = document.body;
 
+  /* Hero height: on phones the CSS viewport units (lvh/dvh) either react to
+     the URL bar or leave a light strip below. Lock the hero to the tallest
+     real viewport height seen — it always covers the section below and never
+     shrinks (so it doesn't react). Desktop keeps the CSS height. */
+  var hero = document.querySelector(".hero");
+  var heroMax = 0;
+  var mqMobile = window.matchMedia("(max-width: 860px)");
+  function fitHero() {
+    if (!hero) return;
+    if (!mqMobile.matches) { hero.style.minHeight = ""; heroMax = 0; return; }
+    var h = window.innerHeight;
+    if (h > heroMax) {
+      heroMax = h;
+      hero.style.minHeight = h + "px";
+    }
+  }
+  fitHero();
+  window.addEventListener("resize", fitHero, { passive: true });
+  window.addEventListener("orientationchange", function () {
+    heroMax = 0;
+    setTimeout(fitHero, 250);
+  });
+
   /* Scroll-progress bar attached to the bottom of the navbar */
   var progressFill = null;
   if (header) {
