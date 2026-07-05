@@ -444,7 +444,7 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(105deg, rgba(37,36,32,0.86) 0%, rgba(58,27,20,0.7) 45%, rgba(67,15,17,0.42) 100%),
+    linear-gradient(105deg, rgba(37,36,32,0.86) 0%, rgba(58,27,20,0.7) 45%, rgba(58,27,20,0.42) 100%),
     linear-gradient(to top, rgba(37,36,32,0.85), rgba(37,36,32,0) 45%);
 }
 .hero .wrap { position: relative; }
