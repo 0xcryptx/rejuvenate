@@ -370,7 +370,7 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
 .hero {
   position: relative;
   min-height: 100vh;
-  min-height: 100svh;           /* stable height — doesn't grow/shrink with the iOS Safari bar */
+  min-height: 100lvh;           /* stable & always covers to the bottom (doesn't react to the iOS bar) */
   display: flex;
   align-items: center;
   padding-block: 7rem 6.5rem;   /* bottom clears the value strip */
