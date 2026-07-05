@@ -335,46 +335,67 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
 .site-header:not(.is-scrolled) .nav-toggle span { background: var(--cream); }
 
 @media (max-width: 860px) {
-  .nav-toggle { display: flex; }
-  /* Full-width dropdown that drops down from below the navbar */
+  /* Boxed toggle button that morphs into an X (like Jana) */
+  .nav-toggle {
+    display: flex;
+    border: 1.5px solid rgba(58, 27, 20, 0.25);
+    border-radius: 12px;
+  }
+  .site-header:not(.is-scrolled) .nav-toggle { border-color: rgba(227, 215, 201, 0.5); }
+
+  /* Floating rounded card that drops from the top-right, below the navbar */
   .nav {
     position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
+    top: calc(100% + 0.6rem);
+    right: clamp(1.1rem, 3vw, 2rem);
+    left: auto;
+    width: min(68vw, 15.5rem);
     flex-direction: column;
     align-items: stretch;
-    gap: 0;
-    padding: 0.25rem clamp(1.1rem, 4vw, 1.75rem) 1.25rem;
-    background: var(--espresso);
-    box-shadow: var(--shadow);
+    gap: 0.2rem;
+    padding: 0.6rem;
+    background: #fbf8f2;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: 0 26px 60px -22px rgba(37, 36, 32, 0.55);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-10px);
-    transition: opacity 0.3s var(--ease), transform 0.35s var(--ease), visibility 0.35s;
+    transform: translateY(-8px) scale(0.98);
+    transform-origin: top right;
+    transition: opacity 0.25s var(--ease), transform 0.3s var(--ease), visibility 0.3s;
   }
   .nav a:not(.btn),
   .site-header:not(.is-scrolled) .nav a:not(.btn) {
-    color: var(--cream);
-    font-size: 0.95rem;
+    color: var(--ink);
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    text-transform: none;
     width: 100%;
-    padding: 0.95rem 0.25rem;
-    border-bottom: 1px solid rgba(190, 149, 90, 0.16);
+    padding: 0.85rem 1rem;
+    border-radius: 12px;
+    transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
   }
   .nav a:not(.btn)::after { display: none; }
-  .nav .btn { width: 100%; margin-top: 1rem; }
-  /* In the espresso dropdown, keep Book Now a gold pill in either header state */
-  .nav .btn--dark { background: var(--gold); color: #2c1a0d; }
+  .nav a:not(.btn):hover { background: rgba(190, 149, 90, 0.12); }
+  /* Current page shown as a filled pill (like Jana's active item) */
+  .nav a.is-active:not(.btn),
+  .site-header:not(.is-scrolled) .nav a.is-active:not(.btn) {
+    background: rgba(190, 149, 90, 0.22);
+    color: var(--burgundy);
+    font-weight: 500;
+  }
+  .nav .btn { width: 100%; margin-top: 0.45rem; }
+  .nav .btn--dark { background: var(--espresso); color: var(--cream); }
   body.nav-open .nav {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
-  /* hamburger -> X */
+  /* hamburger -> X (colour follows the navbar state so it stays visible) */
   body.nav-open .nav-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
   body.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
   body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-  body.nav-open .nav-toggle span { background: var(--cream); }
 }
 
 /* ============================================================
