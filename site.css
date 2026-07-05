@@ -66,6 +66,7 @@ html {
   scroll-padding-top: 5.5rem; /* clear the sticky header on anchor jumps */
   overscroll-behavior: none;  /* no rubber-band bounce / scroll-chaining */
   scrollbar-width: none;      /* hide the side scrollbar (Firefox) */
+  background-color: var(--charcoal);  /* canvas below the footer matches the footer */
 }
 /* Hide the native side scrollbar (WebKit/Chromium) — a scroll-progress bar
    under the navbar shows position instead */
