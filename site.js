@@ -6,12 +6,30 @@
   var toggle = document.querySelector(".nav-toggle");
   var body = document.body;
 
-  /* Sticky header: solid once the user scrolls past the hero top */
+  /* Scroll-progress bar attached to the bottom of the navbar */
+  var progressFill = null;
+  if (header) {
+    var bar = document.createElement("div");
+    bar.className = "scroll-progress";
+    bar.setAttribute("aria-hidden", "true");
+    progressFill = document.createElement("i");
+    bar.appendChild(progressFill);
+    header.appendChild(bar);
+  }
+
+  /* Sticky header: solid once the user scrolls past the hero top,
+     plus update the scroll-progress bar */
   function onScroll() {
-    if (!header) return;
-    header.classList.toggle("is-scrolled", window.scrollY > 24);
+    if (header) header.classList.toggle("is-scrolled", window.scrollY > 24);
+    if (progressFill) {
+      var st = window.scrollY || document.documentElement.scrollTop;
+      var docH = document.documentElement.scrollHeight - window.innerHeight;
+      var p = docH > 0 ? Math.min(1, Math.max(0, st / docH)) : 0;
+      progressFill.style.transform = "scaleX(" + p + ")";
+    }
   }
   window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
   onScroll();
 
   /* Mobile menu */

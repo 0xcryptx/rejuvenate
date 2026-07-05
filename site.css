@@ -65,7 +65,11 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 5.5rem; /* clear the sticky header on anchor jumps */
   overscroll-behavior: none;  /* no rubber-band bounce / scroll-chaining */
+  scrollbar-width: none;      /* hide the side scrollbar (Firefox) */
 }
+/* Hide the native side scrollbar (WebKit/Chromium) — a scroll-progress bar
+   under the navbar shows position instead */
+html::-webkit-scrollbar { width: 0; height: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -232,6 +236,27 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   background: var(--sand);            /* fully opaque when solid */
   box-shadow: 0 1px 0 var(--line), var(--shadow-soft);
   padding-block: 0.7rem;
+}
+
+/* Scroll-progress bar attached to the bottom edge of the navbar */
+.scroll-progress {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(58, 27, 20, 0.10);
+  overflow: hidden;
+  pointer-events: none;
+}
+.scroll-progress i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: #3A1B14;
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
 }
 
 .brand {
