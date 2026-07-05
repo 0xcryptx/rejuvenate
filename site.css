@@ -260,21 +260,34 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   will-change: transform;
 }
 
+/* Logo: full REJUVENATE wordmark at the top, shrinks/cross-fades to the
+   R monogram once the header turns solid on scroll. */
 .brand {
-  display: inline-flex;
-  align-items: center;
+  position: relative;
+  display: block;
+  height: 1.7rem;
+  width: 13.5rem;                 /* full wordmark width */
+  overflow: hidden;
   line-height: 0;
   flex-shrink: 0;
+  transition: width 0.45s var(--ease);
 }
+.site-header.is-scrolled .brand { width: 1.9rem; }   /* collapses to the R */
 .brand img {
-  height: 1.7rem;   /* R monogram — compact */
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
   width: auto;
+  transition: opacity 0.4s var(--ease);
 }
-/* On the transparent (top) header over the dark hero, lighten the dark
-   wordmark so it reads on espresso. Once scrolled, restore it. */
+.brand__full { height: 1.05rem; opacity: 1; }
+.brand__mark { height: 1.6rem; opacity: 0; }
+.site-header.is-scrolled .brand__full { opacity: 0; }
+.site-header.is-scrolled .brand__mark { opacity: 1; }
+/* Lighten whichever logo shows over the dark hero (transparent header) */
 .site-header:not(.is-scrolled) .brand img {
   filter: brightness(0) invert(1) sepia(0.25) saturate(1.4) hue-rotate(-6deg);
-  opacity: 0.95;
 }
 
 .nav {
