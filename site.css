@@ -370,7 +370,7 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
 .hero {
   position: relative;
   min-height: 100vh;
-  min-height: 100lvh;           /* stable & always covers to the bottom (doesn't react to the iOS bar) */
+  min-height: calc(100lvh + env(safe-area-inset-bottom, 0px));  /* cover into the bottom safe area too */
   display: flex;
   align-items: center;
   padding-block: 7rem 6.5rem;   /* bottom clears the value strip */
@@ -446,7 +446,7 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   flex-wrap: wrap;
   justify-content: center;
   gap: clamp(1rem, 4vw, 3.5rem);
-  padding-block: 1.25rem;
+  padding: 1.25rem 0 calc(1.25rem + env(safe-area-inset-bottom, 0px));
   text-align: center;
 }
 .strip span {
