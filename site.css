@@ -788,6 +788,7 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   background: var(--charcoal);
   color: var(--taupe);
   padding-block: clamp(3rem, 5vw, 4rem) 1.4rem;
+  padding-bottom: calc(1.4rem + env(safe-area-inset-bottom, 0px)); /* fill the bottom safe area with the footer colour */
 }
 .footer__top {
   display: grid;
