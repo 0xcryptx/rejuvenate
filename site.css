@@ -109,7 +109,7 @@ a { color: inherit; }
 
 /* Dark section variant */
 .section--dark {
-  background: var(--espresso);
+  background: #1E080A;
   color: var(--cream);
 }
 .section--charcoal {
@@ -433,7 +433,7 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   background-image: url("assets/landing_background2.jpg");
   background-size: cover;
   background-position: center 30%;
-  background-color: var(--charcoal);
+  background-color: var(--espresso);
   background-blend-mode: multiply;
   filter: saturate(0.3) brightness(0.85) sepia(0.1);
   transform: scale(1.04);
@@ -444,8 +444,8 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(105deg, rgba(37,36,32,0.88) 0%, rgba(37,36,32,0.74) 45%, rgba(37,36,32,0.52) 100%),
-    linear-gradient(to top, rgba(37,36,32,0.85), rgba(37,36,32,0) 45%);
+    linear-gradient(105deg, rgba(30,8,10,0.9) 0%, rgba(30,8,10,0.76) 45%, rgba(30,8,10,0.54) 100%),
+    linear-gradient(to top, rgba(30,8,10,0.86), rgba(30,8,10,0) 45%);
 }
 .hero .wrap { position: relative; }
 .hero__inner { max-width: 40rem; }
@@ -1051,7 +1051,7 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   content: "";
   position: absolute; inset: 0; z-index: -1;
   background:
-    radial-gradient(120% 130% at 50% 50%, rgba(58,27,20,0.55), rgba(37,36,32,0.82));
+    radial-gradient(120% 130% at 50% 50%, rgba(30,8,10,0.55), rgba(30,8,10,0.82));
 }
 .mood .eyebrow { color: var(--gold); }
 .mood .line {
@@ -1072,7 +1072,7 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   text-align: center;
   background:
     radial-gradient(100% 120% at 50% 0%, rgba(190,149,90,0.16), transparent 55%),
-    var(--espresso);
+    #1E080A;
   color: var(--cream);
 }
 .page-hero .display { color: var(--cream); }

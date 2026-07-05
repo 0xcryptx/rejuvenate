@@ -15,6 +15,7 @@ COLOR PALETTE
 #252420 — deep charcoal brown
 #3A1B14 — dark espresso brown
 #430F11 — deep burgundy / wine red
+#1E080A — deep dark burgundy (hero gradient scrim)
 
 
 FONTS
