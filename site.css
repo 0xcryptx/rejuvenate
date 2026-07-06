@@ -1109,3 +1109,54 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   color: var(--ink-soft);
 }
 .booking-help a { color: var(--burgundy); font-weight: 500; }
+
+/* Booking: existing vs new customer choice */
+.booking-choice { text-align: center; padding: clamp(0.25rem, 2vw, 1rem) 0; }
+.booking-choice h2 { margin-bottom: 0.5rem; }
+.booking-choice > p {
+  color: var(--ink-soft);
+  max-width: 44ch;
+  margin: 0 auto clamp(1.75rem, 4vw, 2.5rem);
+}
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(0.85rem, 2.5vw, 1.25rem);
+  max-width: 40rem;
+  margin-inline: auto;
+}
+@media (max-width: 560px) { .choice-grid { grid-template-columns: 1fr; } }
+.choice-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-align: left;
+  padding: clamp(1.25rem, 3.5vw, 1.75rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: #fffdf9;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+.choice-card:hover { border-color: var(--gold); box-shadow: var(--shadow); transform: translateY(-2px); }
+.choice-card:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 2px; }
+.choice-card__title { font-family: var(--font-display); font-size: 1.3rem; color: var(--espresso); }
+.choice-card__desc { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.5; }
+
+.booking-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+  font: inherit;
+  font-weight: 500;
+  color: var(--burgundy);
+  cursor: pointer;
+}
+.booking-back:hover { text-decoration: underline; }
