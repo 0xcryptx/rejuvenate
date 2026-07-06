@@ -1125,7 +1125,6 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   max-width: 40rem;
   margin-inline: auto;
 }
-@media (max-width: 560px) { .choice-grid { grid-template-columns: 1fr; } }
 .choice-card {
   display: flex;
   flex-direction: column;
@@ -1147,6 +1146,13 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
 .choice-card__desc { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.5; transition: color 0.25s; }
 .choice-card:hover .choice-card__title { color: var(--cream); }
 .choice-card:hover .choice-card__desc { color: rgba(227, 215, 201, 0.85); }
+/* Keep both cards side by side on phones — just shrink them to fit */
+@media (max-width: 560px) {
+  .choice-grid { gap: 0.6rem; }
+  .choice-card { padding: 0.95rem 0.8rem; }
+  .choice-card__title { font-size: 1.05rem; }
+  .choice-card__desc { font-size: 0.78rem; line-height: 1.4; }
+}
 
 .booking-back {
   display: inline-flex;
