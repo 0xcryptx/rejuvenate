@@ -1134,17 +1134,19 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   padding: clamp(1.25rem, 3.5vw, 1.75rem);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: #fffdf9;
+  background: transparent;
   color: var(--ink);
   font: inherit;
   cursor: pointer;
   text-decoration: none;
-  transition: border-color .2s, box-shadow .2s, transform .2s;
+  transition: background-color 0.25s, color 0.25s, border-color 0.25s, transform 0.25s;
 }
-.choice-card:hover { border-color: var(--gold); box-shadow: var(--shadow); transform: translateY(-2px); }
+.choice-card:hover { background: var(--espresso); color: var(--cream); border-color: var(--espresso); transform: translateY(-2px); }
 .choice-card:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 2px; }
-.choice-card__title { font-family: var(--font-display); font-size: 1.3rem; color: var(--espresso); }
-.choice-card__desc { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.5; }
+.choice-card__title { font-family: var(--font-display); font-size: 1.3rem; color: var(--espresso); transition: color 0.25s; }
+.choice-card__desc { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.5; transition: color 0.25s; }
+.choice-card:hover .choice-card__title { color: var(--cream); }
+.choice-card:hover .choice-card__desc { color: rgba(227, 215, 201, 0.85); }
 
 .booking-back {
   display: inline-flex;
@@ -1158,5 +1160,6 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   font-weight: 500;
   color: var(--burgundy);
   cursor: pointer;
+  text-decoration: none;
 }
 .booking-back:hover { text-decoration: underline; }

@@ -58,7 +58,7 @@
               <p>Let us know so we can take you to the right place.</p>
               <div class="choice-grid">
                 <a class="choice-card" href="/book/login/">
-                  <span class="choice-card__title">Existing customer</span>
+                  <span class="choice-card__title">Existing client</span>
                   <span class="choice-card__desc">Sign in to rebook and manage your appointments.</span>
                 </a>
                 <button class="choice-card" type="button" id="choice-new">
@@ -111,9 +111,16 @@
           function mountWidget() {
             if (mounted) return;
             mounted = true;
-            BookAppWidgetReady(function () {
+            function doMount() {
               BookApp.widget('#bookapp-reservation-widget', 'rejuvenate-dubai-ladies-salon');
-            });
+            }
+            // If the embed script has already loaded, mount immediately;
+            // otherwise queue it to run once the script becomes ready.
+            if (window.BookApp && typeof window.BookApp.widget === "function") {
+              doMount();
+            } else {
+              BookAppWidgetReady(doMount);
+            }
             // Hide the fallback once the widget injects its content
             if (mount && fallback) {
               if (mount.children.length) { fallback.style.display = "none"; return; }

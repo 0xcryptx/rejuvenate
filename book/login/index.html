@@ -36,7 +36,7 @@
     <main>
       <section class="page-hero" aria-label="Sign in">
         <div class="wrap">
-          <p class="eyebrow">Existing customer</p>
+          <p class="eyebrow">Existing client</p>
           <h1 class="display">Welcome back</h1>
           <p>Sign in to rebook your favourite treatments and manage your appointments.</p>
         </div>
@@ -45,12 +45,39 @@
       <section class="section section--tight" aria-label="Sign in">
         <div class="booking-wrap">
           <div class="booking-card">
-            <!-- PLACEHOLDER: replace the contents of this card with the login page code. -->
-            <p class="booking-fallback">
-              The sign-in page is coming soon. In the meantime, please
+            <a class="booking-back" href="/book/">← Back to options</a>
+
+            <!-- Fallback shown only until the widget mounts (hidden by the observer below) -->
+            <p class="booking-fallback" id="booking-fallback">
+              Loading your account… If it doesn’t appear, please
               <a href="https://wa.me/9710000000000">message us on WhatsApp</a>
               or <a href="/contact/">contact us</a> and we’ll book you in.
             </p>
+
+            <!-- BookApp customer widget — integrated exactly as provided -->
+            <div id="bookapp-customer-widget"></div>
+            <script type="text/javascript">
+            !function(e,t,n){var u=n.queue||[];e.BookAppWidgetReady=n=function(e){n.queue.push(e)},n.queue=u;var o="script",a=t.createElement(o),i=t.getElementsByTagName(o)[0];a.src="https://cdn.book.app/embed/v1.js",a.type="text/javascript",a.async=!0,a.addEventListener("load",function(){for(;n.queue.length;)n.queue.shift()()},!1),i.parentNode.insertBefore(a,i)}(window,document,window.BookAppWidgetReady||function(){});
+            BookAppWidgetReady(function () {
+                BookApp.widget('#bookapp-customer-widget', 'rejuvenate-dubai-ladies-salon', { initial: BookApp.Page.Customer } );
+            });
+            </script>
+            <!-- /BookApp customer widget -->
+
+            <!-- Hide the fallback once the widget injects its content (does not touch the widget script) -->
+            <script>
+            (function () {
+              var mount = document.getElementById("bookapp-customer-widget");
+              var fallback = document.getElementById("booking-fallback");
+              if (!mount || !fallback) return;
+              function hide() { fallback.style.display = "none"; }
+              if (mount.children.length) return hide();
+              var obs = new MutationObserver(function () {
+                if (mount.children.length) { hide(); obs.disconnect(); }
+              });
+              obs.observe(mount, { childList: true });
+            })();
+            </script>
           </div>
 
           <p class="booking-help">
