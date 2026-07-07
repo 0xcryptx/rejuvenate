@@ -666,6 +666,20 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   white-space: nowrap;
 }
 
+/* New UAE Dirham symbol, rendered from an SVG mask so it inherits the
+   surrounding text colour (currentColor) and scales with the font size.
+   Swap /assets/aed.svg for the official glyph to update it everywhere. */
+.aed {
+  display: inline-block;
+  width: 0.92em;   /* official glyph aspect ratio is 1000 x 870 */
+  height: 0.8em;
+  margin-right: 0.16em;
+  vertical-align: -0.06em;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/aed.svg") no-repeat center / contain;
+          mask: url("/assets/aed.svg") no-repeat center / contain;
+}
+
 /* ============================================================
    Feature / why-us band (dark)
    ============================================================ */
@@ -833,18 +847,18 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
 .site-footer {
   background: var(--charcoal);
   color: var(--taupe);
-  padding-block: clamp(3rem, 5vw, 4rem) 1.4rem;
-  padding-bottom: calc(1.4rem + env(safe-area-inset-bottom, 0px)); /* fill the bottom safe area with the footer colour */
+  padding-block: clamp(2.25rem, 4vw, 3rem) 1.2rem;
+  padding-bottom: calc(1.2rem + env(safe-area-inset-bottom, 0px)); /* fill the bottom safe area with the footer colour */
 }
 .footer__top {
   display: grid;
   grid-template-columns: 1.7fr 1fr 1.1fr 1.35fr auto;
-  gap: clamp(1.75rem, 4vw, 3rem);
-  padding-bottom: 2rem;
+  gap: clamp(1.5rem, 3.5vw, 2.5rem);
+  padding-bottom: 1.5rem;
   border-bottom: 1px solid rgba(190,149,90,0.18);
 }
-.footer__brand img { height: 1.5rem; width: auto; filter: brightness(0) invert(1) sepia(0.3) saturate(1.3) hue-rotate(-6deg); opacity: 0.9; margin-bottom: 1rem; }
-.footer__brand p { font-size: 0.88rem; max-width: 32ch; margin-bottom: 1.35rem; }
+.footer__brand img { height: 1.5rem; width: auto; filter: brightness(0) invert(1) sepia(0.3) saturate(1.3) hue-rotate(-6deg); opacity: 0.9; margin-bottom: 0.75rem; }
+.footer__brand p { font-size: 0.88rem; max-width: 32ch; margin-bottom: 1rem; }
 .footer__cta {
   display: inline-flex;
   align-items: center;
@@ -869,14 +883,14 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 1.15rem;
+  margin-bottom: 0.85rem;
 }
-.footer__col ul { list-style: none; display: grid; gap: 0.7rem; }
+.footer__col ul { list-style: none; display: grid; gap: 0.55rem; }
 .footer__col a { text-decoration: none; color: var(--taupe); font-size: 0.9rem; transition: color 0.2s; }
 .footer__col a:hover { color: var(--cream); }
 
 /* Contact details with leading icons */
-.footer__col ul.footer__contact { gap: 0.9rem; }
+.footer__col ul.footer__contact { gap: 0.7rem; }
 .footer__contact li { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.9rem; }
 .footer__contact .fi { color: var(--gold); flex-shrink: 0; line-height: 0; margin-top: 0.15rem; }
 .footer__contact .fi svg { width: 1rem; height: 1rem; display: block; }
@@ -895,7 +909,7 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
 .footer__socials svg { width: 1.15rem; height: 1.15rem; }
 
 .footer__bottom {
-  padding-top: 1.4rem;
+  padding-top: 1rem;
   text-align: center;
   font-size: 0.75rem;
   letter-spacing: 0.05em;
@@ -1060,7 +1074,8 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   font-size: clamp(1.9rem, 5vw, 3.4rem);
   line-height: 1.25;
   color: var(--cream);
-  max-width: 20ch;
+  max-width: 26ch;
+  text-wrap: balance;
   margin: 1.5rem auto 2.5rem;
 }
 
