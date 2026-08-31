@@ -1,0 +1,6 @@
+# SEO note: this site is on a temporary buildyourweb.ae subdomain. When it moves to its own domain, update canonical/OG/JSON-LD URLs, sitemap.xml, and the robots.txt Sitemap line to match.
+User-agent: *
+Allow: /
+Disallow: /book/login
+
+Sitemap: https://rejuvenate.buildyourweb.ae/sitemap.xml
