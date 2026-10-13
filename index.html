@@ -145,8 +145,8 @@ button:disabled{opacity:.6;cursor:progress}
 @media (max-width:860px){
   .hero-grid{display:flex;flex-direction:column;gap:0;padding-top:0}
   .hero-copy{gap:22px;padding-bottom:28px}
-  .hero-art{order:-1;min-height:0;height:300px;margin-inline:calc(-1 * clamp(16px,4vw,48px));margin-bottom:28px}
-  .hero-art img{object-position:60% 28%}
+  .hero-art{order:-1;min-height:0;height:min(92vw,420px);margin-inline:calc(-1 * clamp(16px,4vw,48px));margin-bottom:8px}
+  .hero-art img{object-position:50% 40%;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 12%,#000 62%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 12%,#000 62%,transparent 100%)}
   .perk-list{grid-template-columns:minmax(0,1fr)}
   .perk,.perk + .perk{padding:24px 0;border-left:0}
   .perk + .perk{border-top:1px solid rgba(55,16,16,.18)}
