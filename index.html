@@ -88,6 +88,8 @@ body{margin:0;background:var(--paper);color:var(--oxblood);font-family:var(--san
 .join .gift strong{color:var(--porcelain);font-weight:400}
 form{display:grid;gap:16px;margin:0 0 1em}
 .field{display:grid;gap:6px}
+.name-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:480px){.name-row{grid-template-columns:1fr}}
 .field label{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blush)}
 .field input{width:100%;font:inherit;font-weight:300;font-size:1rem;color:var(--porcelain);background:transparent;border:0;border-bottom:1px solid rgba(233,217,211,.45);padding:8px 0 10px;border-radius:0;outline:none;transition:border-color .2s}
 .field input::placeholder{color:rgba(233,217,211,.45)}
@@ -172,10 +174,17 @@ button:disabled{opacity:.6;cursor:progress}
             <p class="gift"><strong>AED 100 off your first treatment</strong> and a complimentary skin consultation, first access to our opening offers, and a chance to join us at the launch evening.</p>
           </div>
           <form id="signup" novalidate>
-            <div class="field">
-              <label for="name">Full name</label>
-              <input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" required>
-              <div class="err" id="name-err" role="alert"></div>
+            <div class="name-row">
+              <div class="field">
+                <label for="firstName">First name</label>
+                <input id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="First name" required>
+                <div class="err" id="firstName-err" role="alert"></div>
+              </div>
+              <div class="field">
+                <label for="lastName">Last name</label>
+                <input id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Last name" required>
+                <div class="err" id="lastName-err" role="alert"></div>
+              </div>
             </div>
             <div class="field">
               <label for="email">Email address</label>
@@ -266,10 +275,7 @@ function mailchimpSubscribe(entry) {
   const mc = CONFIG.mailchimp;
   const url = new URL(mc.action.replace("/subscribe/post?", "/subscribe/post-json?"));
   const cb = "mc_cb_" + Date.now();
-  /* Split "Sara Al Mansoori" into First Name "Sara" and Last Name "Al Mansoori", matching how Ovatu syncs clients. */
-  const [firstName, ...rest] = entry.name.split(/\s+/);
-  const data = { ...entry, firstName, lastName: rest.join(" ") };
-  Object.entries(mc.fields).forEach(([key, tag]) => url.searchParams.set(tag, data[key]));
+  Object.entries(mc.fields).forEach(([key, tag]) => url.searchParams.set(tag, entry[key]));
   url.searchParams.set("c", cb);
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
@@ -289,7 +295,8 @@ function mailchimpSubscribe(entry) {
 const $ = (id) => document.getElementById(id);
 const form = $("signup");
 const fields = {
-  name: { el: $("name"), err: $("name-err"), check: v => v.trim().length >= 2 ? "" : "Please enter your full name." },
+  firstName: { el: $("firstName"), err: $("firstName-err"), check: v => v.trim() ? "" : "Please enter your first name." },
+  lastName: { el: $("lastName"), err: $("lastName-err"), check: v => v.trim() ? "" : "Please enter your last name." },
   email: { el: $("email"), err: $("email-err"), check: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? "" : "Please enter a valid email, like name@example.com." },
   phone: { el: $("phone"), err: $("phone-err"), check: v => {
     const digits = v.replace(/\D/g, "");
@@ -338,16 +345,17 @@ async function save(entry) {
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   $("formError").hidden = true;
-  const ok = ["name", "email", "phone"].map(validate).every(Boolean);
+  const ok = ["firstName", "lastName", "email", "phone"].map(validate).every(Boolean);
   const consent = $("consent").checked;
   $("consent-err").textContent = consent ? "" : "Please tick the box so we can send you your welcome gift.";
   if (!ok || !consent) {
-    const first = ["name", "email", "phone"].find(k => fields[k].el.getAttribute("aria-invalid") === "true");
+    const first = ["firstName", "lastName", "email", "phone"].find(k => fields[k].el.getAttribute("aria-invalid") === "true");
     (first ? fields[first].el : $("consent")).focus();
     return;
   }
   const entry = {
-    name: fields.name.el.value.trim(),
+    firstName: fields.firstName.el.value.trim(),
+    lastName: fields.lastName.el.value.trim(),
     email: fields.email.el.value.trim().toLowerCase(),
     phone: fields.phone.el.value.trim(),
     consent: true,
@@ -358,8 +366,7 @@ form.addEventListener("submit", async (e) => {
   btn.disabled = true; btn.textContent = "Joining…";
   try {
     await save(entry);
-    const first = entry.name.split(/\s+/)[0];
-    $("thanksTitle").textContent = "You're on the list, " + first + ".";
+    $("thanksTitle").textContent = "You're on the list, " + entry.firstName + ".";
     $("formView").hidden = true;
     $("thanksView").hidden = false;
     $("join").scrollIntoView({ behavior: "smooth", block: "center" });
