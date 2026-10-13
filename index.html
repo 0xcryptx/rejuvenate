@@ -257,7 +257,7 @@ const CONFIG = {
      action = the form's action URL; fields = the merge tag each input maps to (the input's name attribute). */
   mailchimp: {
     action: "https://rejuvenatedubai.us15.list-manage.com/subscribe/post?u=8a2bebb624728ae501601b12b&id=796b919c5e&f_id=00fd9de1f0",
-    fields: { email: "EMAIL", name: "FNAME", phone: "PHONE" },
+    fields: { email: "EMAIL", firstName: "FNAME", lastName: "LNAME", phone: "PHONE" },
   },
 };
 
@@ -266,7 +266,10 @@ function mailchimpSubscribe(entry) {
   const mc = CONFIG.mailchimp;
   const url = new URL(mc.action.replace("/subscribe/post?", "/subscribe/post-json?"));
   const cb = "mc_cb_" + Date.now();
-  Object.entries(mc.fields).forEach(([key, tag]) => url.searchParams.set(tag, entry[key]));
+  /* Split "Sara Al Mansoori" into First Name "Sara" and Last Name "Al Mansoori", matching how Ovatu syncs clients. */
+  const [firstName, ...rest] = entry.name.split(/\s+/);
+  const data = { ...entry, firstName, lastName: rest.join(" ") };
+  Object.entries(mc.fields).forEach(([key, tag]) => url.searchParams.set(tag, data[key]));
   url.searchParams.set("c", cb);
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
