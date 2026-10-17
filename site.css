@@ -799,6 +799,9 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   text-transform: uppercase;
   color: var(--sage);
   margin-bottom: 0.5rem;
+  width: fit-content;
+  cursor: default;
+  user-select: none;
 }
 .field input,
 .field select,
