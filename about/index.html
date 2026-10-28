@@ -38,7 +38,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/site.css?v=10" />
+    <link rel="stylesheet" href="/site.css?v=23" />
   </head>
   <body>
     <header class="site-header" id="top">
@@ -62,7 +62,7 @@
         <div class="wrap">
           <p class="eyebrow">Our story</p>
           <h1 class="display">About Rejuvenate</h1>
-          <p>A ladies-only beauty and aesthetics salon in Dubai Sports City, created for women who want expert care, honest guidance and a calm space to feel renewed.</p>
+          <p>Who we are, how we work, and what to expect at your first appointment.</p>
         </div>
       </section>
 
@@ -70,11 +70,10 @@
       <section class="section">
         <div class="wrap about__grid">
           <div class="about__media reveal">
-            <img src="/assets/landing_background2.jpg" alt="A calming facial treatment at Rejuvenate" loading="lazy" />
+            <img src="/assets/images/cherries.jpg" alt="Cherries resting on glowing, dewy skin" loading="lazy" />
           </div>
           <div class="about__body reveal">
-            <p class="eyebrow">The Rejuvenate philosophy</p>
-            <h2 class="display">Beauty that starts with understanding you</h2>
+            <h2 class="display">We listen before we treat</h2>
             <p>
               Rejuvenate was created as a private retreat from the rush of everyday life.
               Every appointment begins with listening, so we can understand your skin,
@@ -85,10 +84,24 @@
               gentle, considered approach. The goal is not to change how you look, but to
               help your skin look and feel healthier and fresher, so you feel more confident, and still like you.
             </p>
-            <div class="about__sign">
-              <img src="/assets/logo/r_logo_transparent.png" alt="" aria-hidden="true" />
-              <span>Private · Personalised · Considered</span>
-            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Team -->
+      <section class="section" style="background: var(--sand-deep);">
+        <div class="wrap about__grid about__grid--flip">
+          <div class="about__media reveal">
+            <img src="/assets/images/team.jpg" alt="The Rejuvenate team at reception" loading="lazy" />
+          </div>
+          <div class="about__body reveal">
+            <p class="eyebrow">Meet the team</p>
+            <h2 class="display">The women behind your treatments</h2>
+            <p>
+              The same team handles your consultation, your treatment and your aftercare.
+              Before anything starts, we’ll tell you what the treatment involves, what you
+              might feel and how your skin will look over the following days.
+            </p>
           </div>
         </div>
       </section>
@@ -97,14 +110,13 @@
       <section class="section section--dark">
         <div class="wrap">
           <div class="section-head reveal">
-            <p class="eyebrow">The Rejuvenate difference</p>
-            <h2 class="display">Care that feels personal from start to finish</h2>
+            <h2 class="display">Why clients choose us</h2>
           </div>
           <div class="why__grid">
-            <div class="why__item reveal"><span class="n">01</span><h3>Ladies Only</h3><p>A private women-only environment designed to help you feel comfortable, relaxed and cared for.</p></div>
-            <div class="why__item reveal"><span class="n">02</span><h3>Personalised Care</h3><p>Every treatment is guided by your skin, your goals and what feels right for you.</p></div>
-            <div class="why__item reveal"><span class="n">03</span><h3>Professional Products</h3><p>We use trusted skincare brands and treatment methods chosen for quality, comfort and results.</p></div>
-            <div class="why__item reveal"><span class="n">04</span><h3>Dubai Sports City</h3><p>Conveniently located in Dubai Sports City, making your visit easy to plan.</p></div>
+            <div class="why__item reveal"><h3>Ladies Only</h3><p>Women-only, from reception to the treatment room.</p></div>
+            <div class="why__item reveal"><h3>Consultation First</h3><p>Every new client starts with a consultation, so your plan fits your skin, not a package.</p></div>
+            <div class="why__item reveal"><h3>Brands You Know</h3><p>We work with Obagi, SkinPen, BioRePeel and HydraFacial.</p></div>
+            <div class="why__item reveal"><h3>By Appointment</h3><p>Visits are by appointment only. Book online or message us on WhatsApp.</p></div>
           </div>
         </div>
       </section>
@@ -112,9 +124,8 @@
       <!-- CTA -->
       <section class="section cta-band">
         <div class="wrap reveal">
-          <p class="rule">Ready when you are</p>
-          <h2 class="display" style="margin-top:1.25rem;">Come and experience Rejuvenate</h2>
-          <p>Book your appointment or contact us with any questions. We’ll help you find the right fit.</p>
+          <h2 class="display">Book a consultation</h2>
+          <p>Not sure what you need? <a href="https://wa.me/971585747641?text=Hi%20Rejuvenate%21%20I%27m%20interested%20in%20your%20services%20and%20would%20love%20to%20know%20more." target="_blank" rel="noopener noreferrer">Message us on WhatsApp</a> first.</p>
           <a href="/book/" class="btn btn--primary">Book an appointment</a>
         </div>
       </section>
@@ -146,6 +157,7 @@
               <li><a href="/services/">Signature Facials</a></li>
               <li><a href="/services/">Peels &amp; Skin Boosters</a></li>
               <li><a href="/services/">Exosome Hair Therapy</a></li>
+              <li><a href="/services/">Lymphatic Reset</a></li>
             </ul>
           </div>
 
@@ -158,11 +170,11 @@
               </li>
               <li>
                 <span class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5c0 8.3 6.7 15 15 15 .9 0 1-.9 1-1.5v-2.3c0-.5-.4-.9-.9-1l-3-.5c-.4-.1-.8.1-1 .4l-.9 1.2A12 12 0 0 1 8.2 10l1.2-.9c.3-.2.5-.6.4-1l-.5-3A1 1 0 0 0 8.3 4H6C5.4 4 4 4.1 4 5Z"/></svg></span>
-                <a href="https://wa.me/971585747641?text=Hi%20Rejuvenate%21%20I%27d%20like%20to%20book%20an%20appointment.">+971 58 574 7641</a>
+                <a href="https://wa.me/971585747641?text=Hi%20Rejuvenate%21%20I%27m%20interested%20in%20your%20services%20and%20would%20love%20to%20know%20more.">+971 58 574 7641</a>
               </li>
               <li>
                 <span class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
-                <a href="mailto:hello@rejuvenate.ae">hello@rejuvenate.ae</a>
+                <a href="mailto:hello@rejuvenatedubai.com">hello@rejuvenatedubai.com</a>
               </li>
             </ul>
           </div>
@@ -171,7 +183,7 @@
             <h4>Follow Us</h4>
             <div class="footer__socials">
               <a href="https://www.instagram.com/rejuvenate_dxb/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg></a>
-              <a href="https://wa.me/971585747641?text=Hi%20Rejuvenate%21%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10.5c.5 1 1.5 2.5 3 3.5 1 .7 2 1 2.5 1 .3 0 .5-.1.7-.3l.8-.8a.5.5 0 0 0 0-.7l-1.3-1.3a.5.5 0 0 0-.7 0l-.4.4a4.5 4.5 0 0 1-2.4-2.4l.4-.4a.5.5 0 0 0 0-.7L10.3 8a.5.5 0 0 0-.7 0l-.8.8c-.2.2-.3.4-.3.7.1.4.3.7.5 1z"/></svg></a>
+              <a href="https://wa.me/971585747641?text=Hi%20Rejuvenate%21%20I%27m%20interested%20in%20your%20services%20and%20would%20love%20to%20know%20more." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10.5c.5 1 1.5 2.5 3 3.5 1 .7 2 1 2.5 1 .3 0 .5-.1.7-.3l.8-.8a.5.5 0 0 0 0-.7l-1.3-1.3a.5.5 0 0 0-.7 0l-.4.4a4.5 4.5 0 0 1-2.4-2.4l.4-.4a.5.5 0 0 0 0-.7L10.3 8a.5.5 0 0 0-.7 0l-.8.8c-.2.2-.3.4-.3.7.1.4.3.7.5 1z"/></svg></a>
             </div>
           </div>
         </div>
@@ -182,7 +194,7 @@
       </div>
     </footer>
 
-    <script src="/site.js?v=10" defer></script>
+    <script src="/site.js?v=17" defer></script>
     <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
   </body>
 </html>
