@@ -562,6 +562,7 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   .about__grid--flip { grid-template-columns: 1fr; }
   .about__grid--flip .about__media { order: 0; }
   .about__media { aspect-ratio: 3 / 2; max-height: 30rem; }
+  .about__media--square { aspect-ratio: 5 / 4; }   /* taller crop so a full portrait (face and outfit) fits */
 }
 
 /* ============================================================
@@ -685,6 +686,32 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
 /* Price menu (Services page) */
 .menu { max-width: 50rem; margin-inline: auto; }
 .menu-group + .menu-group { margin-top: clamp(2.5rem, 5vw, 3.75rem); }
+/* Photo between treatment groups */
+.menu-photo {
+  position: relative;
+  margin: clamp(2.5rem, 5vw, 3.75rem) 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 2 / 1;
+  box-shadow: var(--shadow-soft);
+  background: var(--sand-deep);
+}
+.menu-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(0.85) sepia(0.08);
+}
+.menu-photo::after {  /* very faint burgundy tint, as in the galleries */
+  content: "";
+  position: absolute; inset: 0;
+  background: rgba(120,15,20,0.13);
+  pointer-events: none;
+}
+.menu-photo + .menu-group { margin-top: 0; }
+.menu-photo:last-child { margin-bottom: 0; }
+@media (max-width: 820px) {
+  .menu-photo { aspect-ratio: 3 / 2; }
+}
 .menu-group__title {
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 3vw, 2rem);
@@ -928,20 +955,6 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
 .form__status.is-success { color: var(--espresso); }
 .form__status.is-error { color: var(--burgundy); font-weight: 500; }
 .form .btn:disabled { opacity: 0.6; cursor: wait; }
-.form__test {
-  display: block;
-  margin: 1rem auto 0;
-  background: none;
-  border: 1px dashed var(--taupe);
-  border-radius: 999px;
-  padding: 0.45rem 1rem;
-  font: inherit;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  color: var(--sage);
-  cursor: pointer;
-}
-.form__test[hidden] { display: none; }
 
 /* Enquiry confirmation dialog */
 .confirm {
@@ -1094,7 +1107,12 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   .footer__brand { grid-column: 1 / -1; }
 }
 @media (max-width: 560px) {
-  .footer__top { grid-template-columns: 1fr 1fr; }
+  .footer__top { grid-template-columns: 1fr 1fr; row-gap: 1.75rem; }
+  /* Contact and Follow Us run full width below Explore and Treatments */
+  .footer__top > :nth-child(4),
+  .footer__top > :nth-child(5) { grid-column: 1 / -1; }
+  .footer__top > :nth-child(5) { text-align: center; }
+  .footer__top > :nth-child(5) .footer__socials { justify-content: center; }
 }
 
 /* ============================================================
@@ -1284,6 +1302,10 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
   padding: clamp(1.25rem, 4vw, 2.75rem);
 }
 #bookapp-reservation-widget { min-height: 320px; }
+@media (max-width: 560px) {
+  .page-hero { padding-top: 9.5rem; }   /* more room between the fixed header and the hero text */
+  .booking-wrap { margin-top: -1.5rem; }   /* card no longer hugs the hero's bottom edge */
+}
 .booking-fallback {
   text-align: center;
   color: var(--sage);
@@ -1379,4 +1401,124 @@ h3.display { font-size: clamp(1.5rem, 3vw, 2rem); }
 @media (max-width: 480px) {
   .wa-float-btn { right: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); width: 50px; height: 50px; }
   .wa-float-btn svg { width: 26px; height: 26px; }
+}
+
+/* ============================================================
+   Opening-list sign-up pop-up (added by site.js)
+   Reuses the .confirm dialog; minimises to a tab beside WhatsApp.
+   ============================================================ */
+.signup-pop .confirm__card {
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.signup-pop .confirm__title { font-size: clamp(1.9rem, 5.5vw, 2.25rem); margin: 0.6rem 0 0.75rem; }
+.signup-pop .confirm__mark { height: 2.5rem; margin-bottom: 1rem; }
+.signup-pop .confirm__text { max-width: 36ch; margin-bottom: 1.5rem; }
+.signup-pop .confirm__text strong { color: var(--burgundy); font-weight: 500; }
+.signup-pop__form { text-align: left; }
+.signup-pop__form .field { margin-bottom: 0.9rem; }
+.signup-pop__row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.signup-pop__consent {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0.25rem 0 1.1rem;
+  cursor: pointer;
+}
+.signup-pop__consent input { margin-top: 0.2rem; accent-color: var(--espresso); flex-shrink: 0; }
+.signup-pop__form .btn { width: 100%; }
+.signup-pop__form .btn:disabled { opacity: 0.6; cursor: wait; }
+.signup-pop__note { font-size: 0.72rem; color: var(--sage); text-align: center; margin-top: 0.9rem; }
+
+.signup-tab {
+  position: fixed;
+  right: calc(20px + 56px + 12px);   /* left of the WhatsApp button */
+  bottom: calc(26px + env(safe-area-inset-bottom, 0px));
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1.1rem 0 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--espresso);
+  background: linear-gradient(180deg, #fffdf9, var(--sand));
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(12px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease), visibility 0.35s;
+}
+.signup-tab.is-visible { opacity: 1; visibility: visible; transform: none; }
+.signup-tab:hover { background: #fffdf9; transform: translateY(-2px); }
+.signup-tab svg { width: 18px; height: 18px; color: var(--gold); }
+@media (max-width: 480px) {
+  .signup-tab { right: calc(14px + 50px + 10px); bottom: calc(17px + env(safe-area-inset-bottom, 0px)); }
+}
+@media (max-width: 340px) {
+  .signup-pop__row { grid-template-columns: 1fr; gap: 0; }
+}
+/* Desktop: wide card with the offer on the left and the form on the right */
+@media (min-width: 900px) {
+  .signup-pop:not(.is-joined) .confirm__card {
+    width: min(56rem, 100%);
+    padding: 3rem;
+    text-align: left;
+  }
+  .signup-pop__body {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .signup-pop__intro {
+    padding-right: 3rem;
+    border-right: 1px solid var(--line);
+  }
+  .signup-pop__intro .confirm__mark { margin: 0 0 1.25rem; }
+  .signup-pop__intro .confirm__title { font-size: 2.6rem; }
+  .signup-pop__intro .confirm__text { margin: 0; }
+}
+/* Page behind the pop-up doesn't scroll */
+html.signup-lock,
+html.signup-lock body { overflow: hidden; }
+/* Auto-close countdown along the top edge of the card */
+.signup-pop .confirm__card { overflow-x: hidden; }
+.signup-pop__timer {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: rgba(190, 149, 90, 0.18);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.signup-pop.is-counting .signup-pop__timer { opacity: 1; }
+.signup-pop__timer i {
+  display: block;
+  height: 100%;
+  background: var(--gold);
+  transform-origin: left;
+}
+/* Minimise: content fades first, then an empty card-shaped ghost morphs into the tab */
+.signup-pop .confirm__card > * { transition: opacity 0.16s ease-out; }
+.signup-pop.is-emptying .confirm__card > * { opacity: 0; }
+.signup-ghost {
+  position: fixed;
+  z-index: 10001;
+  background: linear-gradient(180deg, #fffdf9, var(--sand));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  pointer-events: none;
 }
