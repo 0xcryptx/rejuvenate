@@ -5,7 +5,9 @@
    then curtains part to reveal the site. Visitors who arrive in the
    first hours after opening get the celebration once too.
    Loaded in <head> without defer so nothing flashes before the lock.
-   Add ?launch=preview to the URL to rehearse it with a 10s countdown.
+   In the last 69 seconds the clock gives way to one huge seconds
+   number (suspense), and the last 10 seconds slam in bigger still.
+   Add ?launch=preview to the URL to rehearse it with a 75s countdown.
    ============================================================ */
 (function () {
   var OPENING = new Date("2026-10-29T18:00:00+04:00").getTime();   // 6pm Dubai time
@@ -13,7 +15,7 @@
   var SEEN_KEY = "rj_launch_seen";
 
   var preview = /[?&]launch=preview\b/.test(location.search);
-  var target = preview ? Date.now() + 10000 : OPENING;
+  var target = preview ? Date.now() + 75000 : OPENING;
   var seen = false;
   try { seen = localStorage.getItem(SEEN_KEY) === "1"; } catch (e) {}
   var markSeen = function () { try { localStorage.setItem(SEEN_KEY, "1"); } catch (e) {} };
@@ -67,7 +69,34 @@
     "@keyframes launch-blink{50%{opacity:.25}}" +
     "@media (max-width:520px){.launch__sep{display:none}.launch__clock{gap:.6rem}}" +
     ".launch__when{margin-top:2.2rem;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(227,215,201,.5);animation:launch-rise 1.2s .75s cubic-bezier(.22,1,.36,1) both}" +
-    ".launch.is-final .launch__unit{border-color:rgba(190,149,90,.75);box-shadow:0 0 40px -6px rgba(190,149,90,.45)}" +
+
+    /* Suspense: last 69s swap the clock for one huge seconds number; last 10s go bigger, gold, and slam in */
+    ".launch__intro{max-height:30rem;overflow:hidden;transition:opacity 1.2s ease,transform 1.2s cubic-bezier(.22,1,.36,1),filter 1.2s ease,max-height 1.2s cubic-bezier(.22,1,.36,1)}" +
+    ".launch.is-suspense .launch__intro{opacity:.35;transform:scale(.92);filter:blur(1px)}" +
+    ".launch.is-final .launch__intro{opacity:0;max-height:0;transform:scale(.85);filter:blur(6px)}" +
+    ".launch__vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 55% at 50% 50%,transparent 30%,rgba(10,2,3,.85) 100%);opacity:0;transition:opacity 2s ease}" +
+    ".launch.is-suspense .launch__vignette{opacity:.7}" +
+    ".launch.is-final .launch__vignette{opacity:1}" +
+    ".launch.is-suspense .launch__glow{animation:launch-heart 1s ease-in-out infinite}" +
+    ".launch.is-final .launch__glow{background:radial-gradient(40% 35% at 50% 50%,rgba(190,149,90,.32),transparent 70%)}" +
+    "@keyframes launch-heart{0%,100%{transform:scale(1);opacity:.75}15%{transform:scale(1.14);opacity:1}30%{transform:scale(1.04)}45%{transform:scale(1.1);opacity:.95}}" +
+    ".launch__big{display:none;position:relative}" +
+    ".launch.is-suspense .launch__clock,.launch.is-suspense .launch__when{display:none}" +
+    ".launch.is-suspense .launch__big{display:block;animation:launch-rise 1s cubic-bezier(.22,1,.36,1) both}" +
+    ".launch__bignum{display:block;font-family:'Kelvinch','Cormorant Garamond',Georgia,serif;font-size:clamp(7rem,30vw,13rem);line-height:1;color:#F5F0E8;font-variant-numeric:tabular-nums;text-shadow:0 0 50px rgba(190,149,90,.45);transition:font-size .9s cubic-bezier(.22,1,.36,1),color .9s ease}" +
+    ".launch__bignum span{display:inline-block;position:relative}" +
+    ".launch__bignum span.is-new{animation:launch-beat .9s cubic-bezier(.22,1,.36,1)}" +
+    "@keyframes launch-beat{from{transform:scale(1.18);opacity:.2;filter:blur(6px)}to{transform:none;opacity:1;filter:none}}" +
+    ".launch__biglabel{display:block;margin-top:1.6rem;font-size:.7rem;letter-spacing:.5em;text-transform:uppercase;color:#BE955A;padding-left:.5em;transition:opacity .6s ease}" +
+    ".launch.is-final .launch__bignum{font-size:clamp(10rem,46vw,22rem);color:#e9cf9f;text-shadow:0 0 60px rgba(190,149,90,.75),0 0 140px rgba(190,149,90,.35)}" +
+    ".launch.is-final .launch__bignum span.is-new{animation:launch-slam .8s cubic-bezier(.34,1.56,.64,1)}" +
+    "@keyframes launch-slam{from{transform:scale(2.4);opacity:0;filter:blur(12px)}55%{opacity:1;filter:none}to{transform:none;opacity:1}}" +
+    ".launch.is-final .launch__bignum span.is-new::after{content:'';position:absolute;left:50%;top:50%;width:1em;height:1em;margin:-.5em 0 0 -.5em;border-radius:50%;border:2px solid #BE955A;opacity:0;animation:launch-shock .9s .15s ease-out}" +
+    "@keyframes launch-shock{from{transform:scale(.4);opacity:.9}to{transform:scale(1.8);opacity:0}}" +
+    ".launch.is-final .launch__stage--count{animation:launch-shake .35s .1s}" +
+    ".launch.is-final.is-beat .launch__stage--count{animation:launch-shake2 .35s .1s}" +
+    "@keyframes launch-shake{25%{transform:translate(-3px,2px)}50%{transform:translate(3px,-2px)}75%{transform:translate(-2px,-1px)}}" +
+    "@keyframes launch-shake2{25%{transform:translate(3px,-2px)}50%{transform:translate(-3px,2px)}75%{transform:translate(2px,1px)}}" +
 
     ".launch__stage--open{position:absolute;opacity:0;pointer-events:none;transform:scale(.9)}" +
     ".launch.is-celebrating .launch__stage--open{opacity:1;transform:none;transition-delay:.35s}" +
@@ -124,16 +153,20 @@
       '<div class="launch__panel launch__panel--l"></div>' +
       '<div class="launch__panel launch__panel--r"></div>' +
       '<div class="launch__glow"></div>' +
+      '<div class="launch__vignette"></div>' +
       '<div class="launch__motes" aria-hidden="true">' + motes + "</div>" +
       '<canvas class="launch__confetti" aria-hidden="true"></canvas>' +
       '<div class="launch__stage launch__stage--count">' +
         '<span class="launch__mark launch__logo" role="img" aria-label="Rejuvenate"></span>' +
+        '<div class="launch__intro">' +
         '<p class="launch__eyebrow">Grand Opening</p>' +
         '<h1 class="launch__title">Something <em>beautiful</em><br />is almost here</h1>' +
         '<p class="launch__sub">Dubai Sports City’s new ladies-only sanctuary for glowing skin is moments away. Get ready to be pampered.</p>' +
+        "</div>" +
         '<div class="launch__clock" role="timer" aria-live="off">' +
           unit("h", "Hours") + sep + unit("m", "Minutes") + sep + unit("s", "Seconds") +
         "</div>" +
+        '<div class="launch__big" aria-hidden="true"><span class="launch__bignum" data-big><span></span></span><span class="launch__biglabel">Seconds</span></div>' +
         '<p class="launch__when">Opening at 6 PM</p>' +
       "</div>" +
       '<div class="launch__stage launch__stage--open" aria-live="polite">' +
@@ -216,7 +249,7 @@
 
   function celebrate(el) {
     markSeen();
-    el.classList.remove("is-final");
+    el.classList.remove("is-final", "is-suspense", "is-beat");
     el.classList.add("is-celebrating");
     var stay = reduceMotion ? 1500 : 4200;
     if (!reduceMotion) confetti(el.querySelector(".launch__confetti"), stay + 1200);
@@ -237,7 +270,7 @@
     var el = build();
     if (!locked) { setTimeout(function () { celebrate(el); }, 150); return; }
 
-    var nodes = { h: el.querySelector("[data-h]"), m: el.querySelector("[data-m]"), s: el.querySelector("[data-s]") };
+    var nodes = { h: el.querySelector("[data-h]"), m: el.querySelector("[data-m]"), s: el.querySelector("[data-s]"), big: el.querySelector("[data-big]") };
     var last = {};
     var set = function (key, val) {
       if (last[key] === val) return;
@@ -252,7 +285,10 @@
       set("h", pad(Math.floor(secs / 3600)));
       set("m", pad(Math.floor(secs % 3600 / 60)));
       set("s", pad(secs % 60));
+      set("big", String(secs));
+      el.classList.toggle("is-suspense", secs <= 69 && secs > 0);
       el.classList.toggle("is-final", secs <= 10 && secs > 0);
+      if (secs <= 10) el.classList.toggle("is-beat", secs % 2 === 0);   // alternate keyframes so the shake replays each second
       if (left <= 0) { done = true; setTimeout(function () { celebrate(el); }, 600); return; }
       setTimeout(tick, (left % 1000) || 1000);   // land on each whole second
     };
