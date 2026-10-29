@@ -487,10 +487,15 @@
     /* First visit: open after a short pause (remembered from then on, so it only ever
        auto-opens once). Later visits: just the tab. Nothing shows on the booking pages
        until the pop-up has been seen elsewhere, so it can't interrupt a booking. */
+    /* While the launch countdown covers the site, wait until it has been revealed */
+    var whenLaunched = function (fn) {
+      if (document.documentElement.classList.contains("launch-locked")) document.addEventListener("rj:launched", fn, { once: true });
+      else fn();
+    };
     if (forceSignup || (!signupState && !/^\/book\//.test(location.pathname))) {
-      setTimeout(function () { openSignup(true); }, forceSignup ? 0 : 3000);
+      whenLaunched(function () { setTimeout(function () { openSignup(true); }, forceSignup ? 0 : 3000); });
     } else if (signupState === "minimized") {
-      showTab(true);
+      whenLaunched(function () { showTab(true); });
     }
   }
 })();
